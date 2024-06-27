@@ -16,6 +16,7 @@
     --font-dark-color: rgb(33, 36, 61);
     --font-dark-light-color: rgb(134, 149, 164);
     --font-light-color: rgb(247, 247, 247);
+    --nav-height: 44px;
 }
 
 body {
@@ -56,7 +57,7 @@ a {
 
 /* # HEADER */
 
-header {
+#header-menu {
     position: fixed;
     top: 0;
     z-index: 9999;
@@ -82,6 +83,7 @@ header {
     line-height: 1;
     font-weight: 700;
     color: var(--primary);
+    z-index: 1;
 }
 
 #hamburger-menu {
@@ -91,6 +93,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
 }
 
 #hamburger-menu:hover {
@@ -360,6 +363,57 @@ header {
     font-weight: 400;
 }
 
+@media only screen and (max-width: 768px) {
+    #header-menu {
+        height: var(--nav-height);
+        transition: height .3s;
+    }
+
+    #header-menu.open-menu {
+        height: 100%;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    #header-menu.open-menu #nav-menu {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+
+    #nav-menu {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        list-style: none;
+        z-index: 0;
+        padding: calc(var(--nav-height) + 40px) 20px 40px;
+        display: flex;
+        flex-flow: row wrap;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: .3s ease;
+    }
+
+    .menu-item {
+        width: 100%;
+        display: flex;
+    }
+
+    /* .menu-item + .menu-item {
+        border-top: 1px solid var(--font-light-color)
+    } */
+
+    .menu-item a {
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: var(--font-dark-color);
+        text-decoration: none;
+    }
+}
+
 @media only screen and (min-width: 769px) {
 
     html {
@@ -387,11 +441,11 @@ header {
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        list-style: none;
         gap: 0 20px;
     }
 
     .menu-item {
-        list-style: none;
         display: flex;
     }
 
@@ -425,7 +479,9 @@ header {
         max-width: calc(100% - 270px);
     }
 
-    .about-note, .about-title, .about-subtitle {
+    .about-note,
+    .about-title,
+    .about-subtitle {
         text-align: left;
     }
 
