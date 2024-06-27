@@ -60,24 +60,25 @@ header {
     position: fixed;
     top: 0;
     z-index: 9999;
+    background: rgb(255, 255, 255, .6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
 #nav-bar {
     width: 100%;
+    position: relative;
     max-width: 850px;
     padding: 12px 20px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(255, 255, 255, .6);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
 }
 
 .nav-brand {
     text-decoration: none;
-    font-size: 20px;
+    font-size: 1.25rem;
     line-height: 1;
     font-weight: 700;
     color: var(--primary);
@@ -108,14 +109,16 @@ header {
 #about .content {
     padding-top: 80px;
     display: flex;
-    flex-flow: column nowrap;
-    gap: 30px;
+    flex-flow: row-reverse wrap;
+    gap: 30px 0;
 }
 
 .about-img {
     width: 100%;
     max-width: 200px;
+    max-height: 200px;
     display: flex;
+    align-items: center;
     padding: 0px 0px 8px 8px;
     position: relative;
     margin: 0 auto;
@@ -183,18 +186,20 @@ header {
     padding: 0;
     border: unset;
     background: var(--primary);
-    width: 200px;
+    transition: background .3s;
+    padding: 0 12px;
     height: 48px;
     border-radius: 4px;
     font-size: 1.125rem;
     line-height: 1;
     text-align: center;
-    font-weight: 400;
+    font-weight: 500;
     color: var(--font-light-color);
 }
 
 .about-button:hover {
     cursor: pointer;
+    background: var(--tertiary);
 }
 
 /* ## posts section */
@@ -215,8 +220,8 @@ header {
 .cards-case {
     width: 100%;
     display: flex;
-    flex-flow: column nowrap;
-    gap: 20px;
+    flex-flow: row wrap;
+    gap: 20px 0;
     justify-content: center;
 }
 
@@ -275,20 +280,34 @@ header {
     width: 100%;
     display: flex;
     flex-flow: column nowrap;
-    gap: 40px;
+    gap: 40px 0;
     justify-content: center;
 }
 
 .project {
     width: 100%;
     display: flex;
-    flex-flow: column nowrap;
-    gap: 12px;
+    flex-flow: row wrap;
+    gap: 12px 0;
 }
 
 .project-img {
     width: 100%;
     display: flex;
+    padding: 0px 0px 8px 8px;
+    position: relative;
+}
+
+.project-img::before {
+    content: '';
+    position: absolute;
+    width: calc(100% - 8px);
+    aspect-ratio: 3/2;
+    border-radius: 4px;
+    background: var(--opacity-secondary);
+    z-index: -1;
+    left: 0;
+    bottom: 0;
 }
 
 .project-img img {
@@ -339,4 +358,105 @@ header {
     text-align: center;
     font-size: 1rem;
     font-weight: 400;
+}
+
+@media only screen and (min-width: 769px) {
+
+    html {
+        font-size: 18px;
+    }
+
+    .content,
+    #footer-content {
+        max-width: 850px;
+        padding: 50px 20px;
+    }
+
+    /* # HEADER */
+
+    #hamburger-menu {
+        display: none;
+    }
+
+    #nav-bar {
+        padding: 20px;
+        justify-content: space-between;
+    }
+
+    #nav-menu {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0 20px;
+    }
+
+    .menu-item {
+        list-style: none;
+        display: flex;
+    }
+
+    .menu-item a {
+        transition: color .3s;
+        color: var(--font-dark-color);
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .menu-item a:hover {
+        color: var(--primary);
+    }
+
+    /* # MAIN */
+    /* ## about section */
+
+    #about .content {
+        padding-top: 100px;
+        align-items: center;
+    }
+
+    .about-img {
+        max-width: 250px;
+        max-height: 250px;
+        margin-right: 0;
+    }
+
+    .about-content {
+        max-width: calc(100% - 270px);
+    }
+
+    .about-note, .about-title, .about-subtitle {
+        text-align: left;
+    }
+
+    .about-button-case {
+        justify-content: flex-start;
+    }
+
+    /* ## posts section */
+
+    .cards-case {
+        justify-content: space-between;
+    }
+
+    .card {
+        max-width: calc(50% - 10px);
+    }
+
+    /* ## projects section */
+
+    .project {
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .project-img {
+        max-width: calc(30% - 10px);
+    }
+
+    .project-content {
+        max-width: calc(70% - 10px);
+    }
+
+    /* ## footer section */
 }
