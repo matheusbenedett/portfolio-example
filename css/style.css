@@ -104,7 +104,6 @@ a {
     width: fit-content;
     display: flex;
     align-items: center;
-    gap: 0 8px;
     transition: transform .3s;
     transform: translateX(0%);
 }
